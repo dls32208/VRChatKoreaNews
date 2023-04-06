@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>RSS Feed Example</title>
+  </head>
+  <body>
+    <h1>RSS Feed Example</h1>
+    <div id="feed"></div>
+    <script>
+      // RSS 피드 URL을 입력하세요.
+      const feedUrl = "https://www.yonhapnewstv.co.kr/browse/feed/";
+
+      // XMLHttpRequest 객체를 생성합니다.
+      const xhr = new XMLHttpRequest();
+
+      // RSS 피드를 가져올 준비를 합니다.
+      xhr.open("GET", feedUrl);
+
+      // RSS 피드를 가져올 준비가 되었을 때, 응답을 처리합니다.
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // RSS 피드를 파싱합니다.
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xhr.responseText, "text/xml");
+
+          // RSS 피드의 제목을 가져옵니다.
+          const title = xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+
+          // RSS 피드의 아이템을 가져와서 HTML에 적용합니다.
+          const items = xmlDoc.getElementsByTagName("item");
+          let html = "<h2>" + title + "</h2><ul>";
+          for (let i = 0; i < items.length; i++) {
+            const itemTitle = items[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+            const itemLink = items[i].getElementsByTagName("link")[0].childNodes[0].nodeValue;
+            html += "<li><a href='" + itemLink + "'>" + itemTitle + "</a></li>";
+          }
+          html += "</ul>";
+
+          // HTML에 RSS 피드를 적용합니다.
+          document.getElementById("feed").innerHTML = html;
+        }
+      };
+
+      // RSS 피드를 가져옵니다.
+      xhr.send();
+    </script>
+  </body>
+</html>
