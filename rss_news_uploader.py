@@ -94,6 +94,7 @@ for press in rss_urls:
                 prev_content = f.read()
             # feedparser로 RSS 뉴스 기사 파싱
             feed = feedparser.parse(rss_url)
+            print(rss_url)
             # 기사 정보를 HTML 코드로 변환
             content = f"<h1>{category}</h1>\n"
             for entry in feed.entries:
