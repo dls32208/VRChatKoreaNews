@@ -69,7 +69,7 @@ rss_urls = {
 }
 
 # 저장할 파일 경로 설정
-file_path = "/home/dls32208/Documents/news"
+file_path = "/home/dls32208/Documents/VRChatKoreaNews"
 
 # html 파일 생성 및 깃허브에 업로드
 for press in rss_urls:
