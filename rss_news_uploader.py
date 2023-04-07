@@ -69,12 +69,14 @@ rss_urls = {
 }
 
 # 저장할 파일 경로 설정
-file_path = "/home/dls32208/Documents/VRChatKoreaNews"
+file_path = "/home/dls32208/Documents/VRChatKoreaNews/"
 
 # html 파일 생성 및 깃허브에 업로드
 for press in rss_urls:
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
+        if not os.path.exists(file_path/press):
+            os.mkdir(file_path/press)
         file_name = f"{press}/{category}.html"
 
         # feedparser로 RSS 뉴스 기사 파싱
