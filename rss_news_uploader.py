@@ -82,30 +82,36 @@ for press in rss_urls:
     press_path = os.path.join(base_path, press)
     if not os.path.exists(press_path):
         os.mkdir(press_path)
-    subprocess.call(
-        f"cd {base_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
 
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
-        file_name = f"{press}/{category}.html"
+        file_name = f"{category}.html"
+        file_path = os.path.join(press_path, file_name)
 
+        # feedparser로 RSS 뉴스 기사 파싱
+        feed = feedparser.parse(rss_url)
+        print(category)
 
-# html 파일 생성
-with open(os.path.join(base_path, file_name), "w") as f:
-    f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
-    # 뉴스 기사 쓰기
-    for entry in feed.entries:
-        f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
-        f.write(f"<p>{entry.summary}</p>\n\n")
-    f.write("</body>\n</html>")
+        # html 파일 생성
+        with open(file_path, "w") as f:
+            f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
+            # 뉴스 기사 쓰기
+            for entry in feed.entries:
+                f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
+                f.write(f"<p>{entry.summary}</p>\n\n")
+            f.write("</body>\n</html>")
 
-# 깃허브에 업로드
-subprocess.call(
-    f"cd {base_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
+        # git add 명령어 실행
+        subprocess.call(f"git add {file_path}", cwd=base_path, shell=True)
+
+    # git commit 및 push 실행
+    subprocess.call(f"git commit -m 'Update news' && git push", cwd=press_path, shell=True)
 
 # ssh-agent 종료
 ssh_agent.kill()
 
+
+"""
 # 3분마다 반복 실행
 while True:
     # ssh-agent 실행
@@ -132,3 +138,5 @@ while True:
     # ssh-agent 종료
     ssh_agent.kill()
     time.sleep(180)
+"""
+
