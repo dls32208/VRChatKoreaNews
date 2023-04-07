@@ -91,15 +91,15 @@ for press in rss_urls:
     file_name = f"{press}.html"
     file_path = os.path.join(base_path, file_name)
     press_html = ""
+    titleList=""
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
-        press_html += f"{category}\n"
-        titleList=""
+        titleList=titleList+category+"_"
         for entry in feed.entries:
-            titleList=titleList+entry.title+"_"
+            press_html += f"_{entry.title}\n"
             try:
                 if len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.description)) and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.summary)):
                     press_html += f"{remove_p_and_img_tags(entry.content[0])}\n\n"
