@@ -42,15 +42,12 @@ def write_html():
                 f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
                 f.write(f"<p>{entry.summary}</p>\n\n")
         f.write("</body>\n</html>")
+        
+    # 깃허브에 업로드
+    subprocess.call(f"cd {file_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
 
 # 최초 실행 시 HTML 파일 생성
 write_html()
-
-# 깃허브에 업로드
-subprocess.call(f"cd {file_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
-
-# ssh-agent 종료
-ssh_agent.kill()
 
 # 3분마다 반복 실행
 while True:
@@ -63,5 +60,5 @@ while True:
     # HTML 파일 생성
     write_html()
 
-    # 깃허브에 업로드
-    subprocess
+    # ssh-agent 종료
+    ssh_agent.kill()
