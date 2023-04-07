@@ -18,7 +18,7 @@ feed = feedparser.parse(rss_url)
 for entry in feed.entries:
     print("Title:", entry.title)
     print("Link:", entry.link)
-    print("Summary:", entry.summary, "\n")
+    print("description:", entry.summary, "\n")
 
 
 
@@ -58,7 +58,7 @@ while True:
         # 뉴스 기사 쓰기
         for entry in feed.entries:
             f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
-            f.write(f"<p>{entry.summary}</p>\n\n")
+            f.write(f"<p>{entry.description}</p>\n\n")
         f.write("</body>\n</html>")
 
     # 깃허브에 업로드
