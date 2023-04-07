@@ -82,13 +82,12 @@ for press in rss_urls:
     press_path = os.path.join(base_path, press)
     if not os.path.exists(press_path):
         os.mkdir(press_path)
+    subprocess.call(
+        f"cd {base_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
 
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
         file_name = f"{press}/{category}.html"
-
-        subprocess.call(
-            f"cd {base_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
 
 
 # html 파일 생성
