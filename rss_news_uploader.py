@@ -99,6 +99,16 @@ for press in rss_urls:
             else:
                 press_html += f"_{entry.description}\n"
                 print("description")
+        for entry in feed.entries:
+            press_html += f"^{entry.title}\n"
+            try:
+                if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
+                    press_html += f"_{entry.content[0].value}\n"
+                else:
+                    press_html += f"_{entry.summary}\n"
+            except AttributeError:
+                press_html += f"_{entry.description}\n"
+
 
                 
     # HTML 파일 생성
