@@ -112,7 +112,7 @@ for press in rss_urls:
                 print("description")
         press_html += "^"  
 
-    press_html=titleList+press_html
+    press_html=titleList+'\n'+press_html
                 
     # HTML 파일 생성
     with open(file_path, "w") as f:
