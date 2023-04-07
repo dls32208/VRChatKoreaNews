@@ -79,33 +79,24 @@ rss_urls = {
 
 
 for press in rss_urls:
-    press_path = os.path.join(base_path, press)
-    if not os.path.exists(press_path):
-        os.mkdir(press_path)
-
+    file_name = f"{press}.html"
+    file_path = os.path.join(base_path, file_name)
+    press_html=""
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
-        file_name = f"{category}.html"
-        file_path = os.path.join(press_path, file_name)
-
         # feedparser로 RSS 뉴스 기사 파싱
-        feed = feedparser.parse(rss_url)
-        print(rss_url)
-
-        # html 파일 생성
-        with open(file_path, "w") as f:
+        press_html=press_html+"<h1>"+category+"<h1>\n"+rss_url+"\n"        
+    print(rss_url)
+    with open(file_path, "w") as f:
             f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
-            # 뉴스 기사 쓰기
-            for entry in feed.entries:
-                f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
-                f.write(f"<p>{entry.description}</p>\n\n")
+            f.write(press_html)
             f.write("</body>\n</html>")
 
-        # git add 명령어 실행
-        subprocess.call(f"git add {file_path}", cwd=base_path, shell=True)
+    # git add 명령어 실행
+    subprocess.call(f"git add {file_path}", cwd=base_path, shell=True)
 
     # git commit 및 push 실행
-    subprocess.call(f"git commit -m 'Update news' && git push", cwd=press_path, shell=True)
+    subprocess.call(f"git commit -m 'Update news' && git push", cwd=base_path, shell=True)
 
 # ssh-agent 종료
 ssh_agent.kill()
