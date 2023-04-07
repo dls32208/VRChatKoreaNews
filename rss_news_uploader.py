@@ -108,9 +108,8 @@ for press in rss_urls:
         f.write("</body>\n</html>")
 
     # 각 언론사별로 commit 및 push
-    press_path = os.path.join(base_path, press)
-    subprocess.call(f"git add {file_path}", cwd=press_path, shell=True)
-    subprocess.call(f"git commit -m 'Update news' && git push", cwd=press_path, shell=True)
+    subprocess.call(f"git add {file_path}", cwd=base_path, shell=True)
+    subprocess.call(f"git commit -m 'Update news' && git push", cwd=base_path, shell=True)
 
 
 
