@@ -85,8 +85,9 @@ for press in rss_urls:
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
         # feedparser로 RSS 뉴스 기사 파싱
-        press_html=press_html+"<h1>"+category+"<h1>\n"+rss_url+"\n"        
-    print(rss_url)
+        feed = feedparser.parse(rss_url)
+        press_html=press_html+"<h1>"+category+"<h1>\n"+feed["entries"]+"\n"        
+    print(feed["entries"])
     with open(file_path, "w") as f:
             f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
             f.write(press_html)
