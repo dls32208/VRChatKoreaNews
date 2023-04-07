@@ -49,7 +49,7 @@ rss_urls = {
         '여행': 'https://rss.donga.com/travel.xml',
         '생활정보': 'https://rss.donga.com/lifeinfo.xml',
         '스포츠': 'https://rss.donga.com/sportsdonga/sports.xml',
-        '야구&MLB': 'https://rss.donga.com/sportsdonga/baseball.xml',
+        '야구MLB': 'https://rss.donga.com/sportsdonga/baseball.xml',
         '축구': 'https://rss.donga.com/sportsdonga/soccer.xml',
         '골프': 'https://rss.donga.com/sportsdonga/golf.xml',
         '일반': 'https://rss.donga.com/sportsdonga/sports_general.xml',
@@ -63,17 +63,17 @@ rss_urls = {
         '정치': 'https://www.mk.co.kr/rss/30200030/',
         '사회': 'https://www.mk.co.kr/rss/50400012/',
         '국제': 'https://www.mk.co.kr/rss/30300018/',
-        '기업·경영': 'https://www.mk.co.kr/rss/50100032/',
+        '기업경영': 'https://www.mk.co.kr/rss/50100032/',
         '증권': 'https://www.mk.co.kr/rss/50200011/',
         '부동산': 'https://www.mk.co.kr/rss/50300009/',
-        '문화·연예': 'https://www.mk.co.kr/rss/30000023/',
+        '문화연예': 'https://www.mk.co.kr/rss/30000023/',
         '스포츠': 'https://www.mk.co.kr/rss/71000001/',
         '게임': 'https://www.mk.co.kr/rss/50700001/',
         'MBA': 'https://www.mk.co.kr/rss/40200124/',
-        '머니 앤 리치스': 'https://www.mk.co.kr/rss/40200003/',
-        'Top Stories(English Edition)': 'https://www.mk.co.kr/rss/30800011/',
-        '이코노미 전체기사': 'https://www.mk.co.kr/rss/50000001/',
-        '시티라이프 전체기사': 'https://www.mk.co.kr/rss/60000007/'
+        '머니앤리치스': 'https://www.mk.co.kr/rss/40200003/',
+        'English': 'https://www.mk.co.kr/rss/30800011/',
+        '이코노미': 'https://www.mk.co.kr/rss/50000001/',
+        '시티라이프': 'https://www.mk.co.kr/rss/60000007/'
     }
 }
 
