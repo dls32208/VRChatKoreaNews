@@ -71,6 +71,7 @@ rss_urls = {
 # 저장할 파일 경로 설정
 file_path = "/home/dls32208/Documents/VRChatKoreaNews/"
 
+<<<<<<< HEAD
 if not os.path.exists(file_path):
     os.mkdir(file_path)
 
@@ -85,6 +86,11 @@ for press in rss_urls:
 
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
+=======
+# 저장할 파일 경로와 파일명 설정
+file_path = "/home/dls32208/Documents/VRChatKoreaNews"
+file_name = "news.html"
+>>>>>>> parent of e301dbb (test)
 
         # html 파일 생성
         with open(os.path.join(file_path, file_name), "w") as f:
