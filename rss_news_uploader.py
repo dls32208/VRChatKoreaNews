@@ -99,7 +99,7 @@ for press in rss_urls:
         press_html += f"{category}\n"
         titleList=""
         for entry in feed.entries:
-            titleList=titleList+f"_{entry.title}"
+            titleList=titleList+entry.title+"_"
             try:
                 if len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.description)) and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.summary)):
                     press_html += f"{remove_p_and_img_tags(entry.content[0])}\n\n"
