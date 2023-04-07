@@ -97,8 +97,9 @@ for press in rss_urls:
         feed = feedparser.parse(rss_url)
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
         press_html += f"{category}\n"
+        titleList=""
         for entry in feed.entries:
-            press_html += f"_{entry.title}\n"
+            titleList=titleList+f"_{entry.title}"
             try:
                 if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
                     press_html += f"{remove_p_and_img_tags(entry.content[0])}\n\n"
@@ -111,7 +112,7 @@ for press in rss_urls:
                 print("description")
         press_html += "^"  
 
-
+    press_html=titleList+press_html
                 
     # HTML 파일 생성
     with open(file_path, "w") as f:
