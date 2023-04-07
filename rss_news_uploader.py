@@ -96,19 +96,20 @@ for press in rss_urls:
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
-        press_html += f"^{category}\n"
+        press_html += f"{category}\n"
         for entry in feed.entries:
-            press_html += f"{entry.title}\n"
+            press_html += f"_{entry.title}\n"
             try:
                 if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
-                    press_html += f"_{remove_p_and_img_tags(entry.content[0])}\n\n"
+                    press_html += f"{remove_p_and_img_tags(entry.content[0])}\n\n"
                     print("content")
                 else:
-                    press_html += f"_{remove_p_and_img_tags(entry.summary)}\n\n"
+                    press_html += f"{remove_p_and_img_tags(entry.summary)}\n\n"
                     print("summary")
             except AttributeError:
-                press_html += f"_{remove_p_and_img_tags(entry.description)}\n\n"
+                press_html += f"{remove_p_and_img_tags(entry.description)}\n\n"
                 print("description")
+        press_html += "^"  
 
 
                 
