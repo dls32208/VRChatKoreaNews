@@ -90,9 +90,9 @@ for press in rss_urls:
         press_html += f"<h1>{category}</h1>\n"
         for entry in feed.entries:
             press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
-            if(entry.summary>entry.description):
-                press_html += f"<p>{entry.summary}</p>\n\n"
-                print("summary")
+            if(entry.content>entry.description):
+                press_html += f"<p>{entry.content}</p>\n\n"
+                print("content")
             else:
                 press_html += f"<p>{entry.description}</p>\n\n"
                 print("description")
