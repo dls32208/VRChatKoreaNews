@@ -25,7 +25,7 @@ rss_urls = {
         '경제': 'https://www.chosun.com/arc/outboundfeeds/rss/category/economy/?outputType=xml',
         '사회': 'https://www.chosun.com/arc/outboundfeeds/rss/category/national/?outputType=xml',
         '국제': 'https://www.chosun.com/arc/outboundfeeds/rss/category/international/?outputType=xml',
-        '문화/라이프': 'https://www.chosun.com/arc/outboundfeeds/rss/category/culture-life/?outputType=xml',
+        '문화라이프': 'https://www.chosun.com/arc/outboundfeeds/rss/category/culture-life/?outputType=xml',
         '오피니언': 'https://www.chosun.com/arc/outboundfeeds/rss/category/opinion/?outputType=xml',
         '스포츠': 'https://www.chosun.com/arc/outboundfeeds/rss/category/sports/?outputType=xml',
         '연예': 'https://www.chosun.com/arc/outboundfeeds/rss/category/entertainments/?outputType=xml'
@@ -90,7 +90,7 @@ for press in rss_urls:
 
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
-        print(category)
+        print(rss_url)
 
         # html 파일 생성
         with open(file_path, "w") as f:
