@@ -86,15 +86,16 @@ for press in rss_urls:
         rss_url = rss_urls[press][category]
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
-        print(rss_url)
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
         press_html += f"<h1>{category}</h1>\n"
         for entry in feed.entries:
             press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
             if(entry.summary>entry.description):
                 press_html += f"<p>{entry.summary}</p>\n\n"
+                print("summary")
             else:
                 press_html += f"<p>{entry.description}</p>\n\n"
+                print("description")
     # HTML 파일 생성
     with open(file_path, "w") as f:
         f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
@@ -110,34 +111,4 @@ for press in rss_urls:
 
 # ssh-agent 종료
 ssh_agent.kill()
-
-
-"""
-# 3분마다 반복 실행
-while True:
-    # ssh-agent 실행
-    ssh_agent = subprocess.Popen(['ssh-agent', '-s'], stdout=subprocess.PIPE)
-    # ssh-add 실행
-    subprocess.call('ssh-add ~/.ssh/id_rsa', shell=True)
-
-    # feedparser로 RSS 뉴스 기사 파싱
-    feed = feedparser.parse(rss_url)
-
-    # html 파일 생성
-    with open(os.path.join(base_path, file_name), "w") as f:
-        f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
-        # 뉴스 기사 쓰기
-        for entry in feed.entries:
-            f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
-            f.write(f"<p>{entry.summary}</p>\n\n")
-        f.write("</body>\n</html>")
-
-    # 깃허브에 업로드
-    subprocess.call(
-        f"cd {base_path} && git add {file_name} && git commit -m 'Update news' && git push", shell=True)
-
-    # ssh-agent 종료
-    ssh_agent.kill()
-    time.sleep(180)
-"""
 
