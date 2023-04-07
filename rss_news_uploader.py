@@ -4,6 +4,13 @@ import os
 import time
 from bs4 import BeautifulSoup
 
+
+def remove_p_and_img_tags(html_text):
+    soup = BeautifulSoup(html_text, 'html.parser')
+    for tag in soup(['p', 'img']):
+        tag.decompose()
+    return str(soup)
+
 # ssh-agent 실행
 ssh_agent = subprocess.Popen(['ssh-agent', '-s'], stdout=subprocess.PIPE)
 # ssh-add 실행
@@ -120,8 +127,4 @@ for press in rss_urls:
 ssh_agent.kill()
 
 
-def remove_p_and_img_tags(html_text):
-    soup = BeautifulSoup(html_text, 'html.parser')
-    for tag in soup(['p', 'img']):
-        tag.decompose()
-    return str(soup)
+
