@@ -100,7 +100,7 @@ for press in rss_urls:
             press_html += f"{entry.title}\n"
             try:
                 if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
-                    press_html += f"_{remove_p_and_img_tags(entry.content)}\n\n"
+                    press_html += f"_{remove_p_and_img_tags(entry.content[0])}\n\n"
                     print("content")
                 else:
                     press_html += f"_{remove_p_and_img_tags(entry.summary)}\n\n"
