@@ -81,17 +81,25 @@ rss_urls = {
 for press in rss_urls:
     file_name = f"{press}.html"
     file_path = os.path.join(base_path, file_name)
-    press_html=""
+    press_html = ""
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
-        press_html=press_html+"<h1>"+category+"<h1>\n"+feed["entries"]+"\n"        
-    print(feed["entries"])
+        # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
+        press_html += f"<h1>{category}</h1>\n"
+        for entry in feed.entries:
+            press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
+            if(entry.summary>entry.description):
+                press_html += f"<p>{entry.summary}</p>\n\n"
+            else:
+                press_html += f"<p>{entry.description}</p>\n\n"
+    # HTML 파일 생성
     with open(file_path, "w") as f:
-            f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
-            f.write(press_html)
-            f.write("</body>\n</html>")
+        f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
+        f.write(press_html)
+        f.write("</body>\n</html>")
+
 
     # git add 명령어 실행
     subprocess.call(f"git add {file_path}", cwd=base_path, shell=True)
