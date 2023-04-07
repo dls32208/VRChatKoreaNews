@@ -87,17 +87,17 @@ for press in rss_urls:
         # feedparser로 RSS 뉴스 기사 파싱
         feed = feedparser.parse(rss_url)
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
-        press_html += f"<h1>{category}</h1>\n"
+        press_html += f"|{category}\n"
         for entry in feed.entries:
-            press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"    
+            press_html += f"^{entry.title}\n"    
             if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
-                press_html += f"<p>{entry.content}</p>\n\n"
+                press_html += f"_{entry.content}\n"
                 print("content")
             elif len(entry.summary) > len(entry.description):
-                press_html += f"<p>{entry.summary}</p>\n\n"
+                press_html += f"_{entry.summary}\n"
                 print("summary")
             else:
-                press_html += f"<p>{entry.description}</p>\n\n"
+                press_html += f"_{entry.description}\n"
                 print("description")
 
                 
