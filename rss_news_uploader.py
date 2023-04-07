@@ -15,6 +15,13 @@ rss_url = "http://www.yonhapnewstv.co.kr/browse/feed/"
 # feedparser로 RSS 뉴스 기사 파싱
 feed = feedparser.parse(rss_url)
 
+for entry in feed.entries:
+    print("Title:", entry.title)
+    print("Link:", entry.link)
+    print("Summary:", entry.summary, "\n")
+
+
+
 # 저장할 파일 경로와 파일명 설정
 file_path = "/home/dls32208/Documents/VRChatKoreaNews"
 file_name = "news.html"
