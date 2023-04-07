@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 
 def remove_p_and_img_tags(html_text):
+    html_text = str(html_text)
     soup = BeautifulSoup(html_text, 'html.parser')
     for tag in soup(['p', 'img']):
         tag.decompose()
