@@ -79,55 +79,33 @@ rss_urls = {
 
 
 for press in rss_urls:
-    press_path = os.path.join(base_path, press)
-    if not os.path.exists(press_path):
-        os.mkdir(press_path)
-
+    file_name = f"{press}.html"
+    file_path = os.path.join(base_path, file_name)
+    press_html = ""
     for category in rss_urls[press]:
         rss_url = rss_urls[press][category]
-        file_name = f"{category}.html"
-        file_path = os.path.join(press_path, file_name)
+        # feedparser로 RSS 뉴스 기사 파싱
+        feed = feedparser.parse(rss_url)
+        print(rss_url)
+        # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
+        press_html += f"<h1>{category}</h1>\n"
+        for entry in feed.entries:
+            press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
+            if(entry.summary>entry.description):
+                press_html += f"<p>{entry.summary}</p>\n\n"
+            else:
+                press_html += f"<p>{entry.description}</p>\n\n"
+    # HTML 파일 생성
+    with open(file_path, "w") as f:
+        f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
+        f.write(press_html)
+        f.write("</body>\n</html>")
 
-        # 이전에 생성된 파일이 존재하는 경우, 이전 내용을 비교하여 변경된 경우에만 파일을 업데이트
-        if os.path.exists(file_path):
-            with open(file_path, "r") as f:
-                prev_content = f.read()
-            # feedparser로 RSS 뉴스 기사 파싱
-            feed = feedparser.parse(rss_url)
-            print(rss_url)
-            # 기사 정보를 HTML 코드로 변환
-            content = f"<h1>{category}</h1>\n"
-            for entry in feed.entries:
-                content += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
-                if entry.summary > entry.description:
-                    content += f"<p>{entry.summary}</p>\n\n"
-                else:
-                    content += f"<p>{entry.description}</p>\n\n"
-            # 이전 내용과 변경된 내용이 다른 경우에만 파일을 업데이트
-            if prev_content != content:
-                with open(file_path, "w") as f:
-                    f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
-                    f.write(content)
-                    f.write("</body>\n</html>")
-                    # 변경된 파일만 git add
-                    subprocess.call(f"git add {file_path}", cwd=base_path, shell=True)
-        else:
-            # 이전에 생성된 파일이 없는 경우, 새로 파일을 생성
-            # feedparser로 RSS 뉴스 기사 파싱
-            feed = feedparser.parse(rss_url)
-            # 기사 정보를 HTML 코드로 변환
-            content = f"<h1>{category}</h1>\n"
-            for entry in feed.entries:
-                content += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
-                if entry.summary > entry.description:
-                    content += f"<p>{entry.summary}</p>\n\n"
-                else:
-                    content += f"<p>{entry.description}</p>\n\n"
-            with open(file_path, "w") as f:
-                f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
-                f.write(content)
-                f.write("</body>\n</html>")
-                # 새로 생성된 파일만
+    # 각 언론사별로 commit 및 push
+    press_path = os.path.join(base_path, press)
+    subprocess.call(f"git add {file_path}", cwd=press_path, shell=True)
+    subprocess.call(f"git commit -m 'Update news' && git push", cwd=press_path, shell=True)
+
 
 
 # ssh-agent 종료
