@@ -2,6 +2,7 @@ import feedparser
 import subprocess
 import os
 import time
+from bs4 import BeautifulSoup
 
 # ssh-agent 실행
 ssh_agent = subprocess.Popen(['ssh-agent', '-s'], stdout=subprocess.PIPE)
@@ -92,13 +93,13 @@ for press in rss_urls:
             press_html += f"{entry.title}\n"
             try:
                 if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
-                    press_html += f"_{entry.content[0].value}\n\n"
+                    press_html += f"_{remove_p_and_img_tags(entry.content)}\n\n"
                     print("content")
                 else:
-                    press_html += f"_{entry.summary}\n\n"
+                    press_html += f"_{remove_p_and_img_tags(entry.summary)}\n\n"
                     print("summary")
             except AttributeError:
-                press_html += f"_{entry.description}\n\n"
+                press_html += f"_{remove_p_and_img_tags(entry.description)}\n\n"
                 print("description")
 
 
@@ -118,3 +119,9 @@ for press in rss_urls:
 # ssh-agent 종료
 ssh_agent.kill()
 
+
+def remove_p_and_img_tags(html_text):
+    soup = BeautifulSoup(html_text, 'html.parser')
+    for tag in soup(['p', 'img']):
+        tag.decompose()
+    return str(soup)
