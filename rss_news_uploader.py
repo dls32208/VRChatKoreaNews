@@ -98,7 +98,7 @@ for press in rss_urls:
             # 뉴스 기사 쓰기
             for entry in feed.entries:
                 f.write(f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n")
-                f.write(f"<p>{entry.summary}</p>\n\n")
+                f.write(f"<p>{entry.description}</p>\n\n")
             f.write("</body>\n</html>")
 
         # git add 명령어 실행
