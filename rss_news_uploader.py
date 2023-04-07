@@ -89,13 +89,18 @@ for press in rss_urls:
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
         press_html += f"<h1>{category}</h1>\n"
         for entry in feed.entries:
-            press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"
-            if(entry.content>entry.description):
+            press_html += f"<h2><a href='{entry.link}'>{entry.title}</a></h2>\n"    
+            if len(entry.content) > len(entry.description) and len(entry.content) > len(entry.summary):
                 press_html += f"<p>{entry.content}</p>\n\n"
                 print("content")
+            elif len(entry.summary) > len(entry.description):
+                press_html += f"<p>{entry.summary}</p>\n\n"
+                print("summary")
             else:
                 press_html += f"<p>{entry.description}</p>\n\n"
                 print("description")
+
+                
     # HTML 파일 생성
     with open(file_path, "w") as f:
         f.write("<html>\n<head>\n<title>News</title>\n</head>\n<body>\n")
