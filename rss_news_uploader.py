@@ -150,7 +150,7 @@ while True:
         subprocess.call(f"git commit -m 'Update news' && git push", cwd=base_path, shell=True)
 
     # 1분 대기
-    time.sleep(60)
+    time.sleep(1800)
 
 
 
