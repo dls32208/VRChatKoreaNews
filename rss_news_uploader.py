@@ -10,24 +10,23 @@ def remove_p_and_img_tags(html_text):
     soup = BeautifulSoup(html_text, 'html.parser')
     for tag in soup(['p', 'img']):
         tag.decompose()
-    return remove_parenthesis_with_type(str(soup))
+    return remove_parenthesis(str(soup))
 
 
 
-def remove_parenthesis_with_type(string):
-    result = ''
-    inside_parenthesis = False
-    for i in range(len(string)):
-        if string[i] == '(' or string[i] == '{' or string[i] == '[':
-            inside_parenthesis = True
-            if "type" in string[i+1:]:
-                inside_parenthesis = False
-        elif string[i] == ')' or string[i] == '}' or string[i] == ']':
-            inside_parenthesis = False
-            continue
-        if not inside_parenthesis:
-            result += string[i]
-    return result
+def remove_parenthesis(string):
+    # 주어진 문자열에서 괄호로 시작하는 부분을 찾아 삭제
+    while True:
+        start_index = string.find("(")
+        end_index = string.find(")")
+        if start_index != -1 and end_index != -1:
+            string = string[:start_index] + string[end_index+1:]
+        else:
+            break
+
+    # 삭제된 문자열 반환
+    return string
+
 
 
 
