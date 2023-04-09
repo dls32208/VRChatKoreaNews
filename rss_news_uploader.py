@@ -4,6 +4,19 @@ import os
 import time
 from bs4 import BeautifulSoup
 
+def remove_parenthesis(string):
+    # 주어진 문자열에서 괄호로 시작하는 부분을 찾아 삭제
+    while True:
+        start_index = string.find("{")
+        end_index = string.find("}")
+        if(end_index-start_index<1000):
+            if start_index != -1 and end_index != -1:
+                string = string[:start_index] + string[end_index+1:]
+            else:
+                break
+    # 삭제된 문자열 반환
+    return string
+
 
 def remove_p_and_img_tags(html_text):
     html_text = str(html_text)
@@ -14,18 +27,7 @@ def remove_p_and_img_tags(html_text):
 
 
 
-def remove_parenthesis(string):
-    # 주어진 문자열에서 괄호로 시작하는 부분을 찾아 삭제
-    while True:
-        start_index = string.find("(")
-        end_index = string.find(")")
-        if start_index != -1 and end_index != -1:
-            string = string[:start_index] + string[end_index+1:]
-        else:
-            break
 
-    # 삭제된 문자열 반환
-    return string
 
 
 
