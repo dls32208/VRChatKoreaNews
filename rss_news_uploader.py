@@ -108,7 +108,7 @@ for press in rss_urls:
                     press_html +="summary"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
                     print("summary")
             except AttributeError:
-                press_html +="description"+ f"{remove_p_and_img_tags(entry.description)}\n\n"
+                press_html +="description"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
                 print("description")
         press_html += "^"  
 
