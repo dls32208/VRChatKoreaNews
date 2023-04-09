@@ -10,7 +10,18 @@ def remove_p_and_img_tags(html_text):
     soup = BeautifulSoup(html_text, 'html.parser')
     for tag in soup(['p', 'img']):
         tag.decompose()
-    return str(soup)
+    return delete_value_key(str(soup))
+
+def delete_value_key(string):
+    # 주어진 문자열을 딕셔너리 형태로 변환
+    d = eval(string.split(", ")[2])
+
+    # 'value' key-value 쌍 삭제
+    del d['value']
+
+    # 딕셔너리를 다시 문자열로 변환하여 출력
+    result = string.split(", ")[0] + ", " + string.split(", ")[1] + ", " + str(d)
+    return result
 
 # ssh-agent 실행
 ssh_agent = subprocess.Popen(['ssh-agent', '-s'], stdout=subprocess.PIPE)
@@ -108,7 +119,7 @@ for press in rss_urls:
                     press_html +="summary"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
                     print("summary")
             except AttributeError:
-                press_html +="description"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
+                press_html +="summary"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
                 print("description")
         press_html += "^"  
 
