@@ -122,17 +122,17 @@ for press in rss_urls:
             temp = f"_{entry.title}\n"
             try:
                 if len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.description)) and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.summary)):
-                    if len(remove_p_and_img_tags(entry.content[0])) < 100:
+                    if len(remove_p_and_img_tags(entry.content[0])) < 10:
                         continue
                     temp +="content"+ f"{remove_p_and_img_tags(entry.content[0])}\n\n"
                     print("content")
                 else:
-                    if len(remove_p_and_img_tags(entry.summary)) < 100:
+                    if len(remove_p_and_img_tags(entry.summary)) < 10:
                         continue
                     temp +="summary"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
                     print("summary")
             except AttributeError:
-                if len(remove_p_and_img_tags(entry.description)) < 100:
+                if len(remove_p_and_img_tags(entry.description)) < 10:
                     continue
                 temp +="description"+ f"{remove_p_and_img_tags(entry.description)}\n\n"
                 print("description")
