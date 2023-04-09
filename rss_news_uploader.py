@@ -119,18 +119,24 @@ for press in rss_urls:
         # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
         titleList=titleList+category+"_"
         for entry in feed.entries:
-            press_html += f"_{entry.title}\n"
+            temp = f"_{entry.title}\n"
             try:
                 if len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.description)) and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.summary)):
-                    press_html +="content"+ f"{remove_p_and_img_tags(entry.content[0])}\n\n"
+                    if len(remove_p_and_img_tags(entry.content[0])) < 100:
+                        continue
+                    temp +="content"+ f"{remove_p_and_img_tags(entry.content[0])}\n\n"
                     print("content")
                 else:
-                    press_html +="summary"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
+                    if len(remove_p_and_img_tags(entry.summary)) < 100:
+                        continue
+                    temp +="summary"+ f"{remove_p_and_img_tags(entry.summary)}\n\n"
                     print("summary")
             except AttributeError:
-                press_html +="description"+ f"{remove_p_and_img_tags(entry.description)}\n\n"
+                if len(remove_p_and_img_tags(entry.description)) < 100:
+                    continue
+                temp +="description"+ f"{remove_p_and_img_tags(entry.description)}\n\n"
                 print("description")
-        press_html += "^"  
+        press_html = press_html+"^"+temp; 
 
     press_html=titleList+'\n'+press_html
                 
