@@ -3,7 +3,6 @@ import subprocess
 import os
 import time
 from bs4 import BeautifulSoup
-import json
 
 
 def remove_p_and_img_tags(html_text):
@@ -11,20 +10,25 @@ def remove_p_and_img_tags(html_text):
     soup = BeautifulSoup(html_text, 'html.parser')
     for tag in soup(['p', 'img']):
         tag.decompose()
-    return delete_value_key(str(soup))
+    return remove_parenthesis_with_type(str(soup))
 
 
 
-def delete_value_key(string):
-    # 주어진 문자열을 딕셔너리 형태로 변환
-    d = json.loads(string.split(", ")[2].replace("'", '"'))
-
-    # 'value' key-value 쌍 삭제
-    del d['value']
-
-    # 딕셔너리를 다시 문자열로 변환하여 반환
-    result = string.split(", ")[0] + ", " + string.split(", ")[1] + ", " + str(d).replace('"', "'")
+def remove_parenthesis_with_type(string):
+    result = ''
+    inside_parenthesis = False
+    for i in range(len(string)):
+        if string[i] == '(' or string[i] == '{' or string[i] == '[':
+            inside_parenthesis = True
+            if "type" in string[i+1:]:
+                inside_parenthesis = False
+        elif string[i] == ')' or string[i] == '}' or string[i] == ']':
+            inside_parenthesis = False
+            continue
+        if not inside_parenthesis:
+            result += string[i]
     return result
+
 
 
 # ssh-agent 실행
