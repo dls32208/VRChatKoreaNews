@@ -104,6 +104,41 @@ rss_urls = {
         'English': 'https://www.mk.co.kr/rss/30800011/',
         '이코노미': 'https://www.mk.co.kr/rss/50000001/',
         '시티라이프': 'https://www.mk.co.kr/rss/60000007/'
+    },
+        'NHK': {
+        '主要ニュース': 'https://www3.nhk.or.jp/rss/news/cat0.xml',
+        '社会': 'https://www3.nhk.or.jp/rss/news/cat1.xml',
+        '科学・医療': 'https://www3.nhk.or.jp/rss/news/cat2.xml',
+        '政治': 'https://www3.nhk.or.jp/rss/news/cat3.xml',
+        '経済': 'https://www3.nhk.or.jp/rss/news/cat4.xml',
+        '国際': 'https://www3.nhk.or.jp/rss/news/cat5.xml',
+        'スポーツ': 'https://www3.nhk.or.jp/rss/news/cat6.xml',
+        '文化・エンタメ': 'https://www3.nhk.or.jp/rss/news/cat7.xml',
+    },
+    '毎日新聞': {
+        'ニュース速報（総合）': 'https://mainichi.jp/rss/etc/mainichi-flash.rss',
+        'スポーツ': 'https://mainichi.jp/rss/etc/mainichi-sports.rss',
+        'エンタメ':'https://mainichi.jp/rss/etc/mainichi-enta.rss',
+        '社説・解説・コラム':'https://mainichi.jp/rss/etc/opinion.rss'
+    },
+    '朝日新聞': {
+        '国内': 'https://www.asahi.com/rss/asahi/newsheadlines.rdf',
+        '社会': 'https://www.asahi.com/rss/asahi/national.rdf',
+        '政治': 'https://www.asahi.com/rss/asahi/politics.rdf',
+        'スポーツ': 'https://www.asahi.com/rss/asahi/sports.rdf',
+        'エンタメ': 'https://www.asahi.com/rss/asahi/entertainment.rdf',   
+        '経済':'https://www.asahi.com/rss/asahi/business.rdf',
+        '国際':'https://www.asahi.com/rss/asahi/international.rdf',
+        'カルチャー':'https://www.asahi.com/rss/asahi/culture.rdf',
+        'テック＆サイエンス':'https://www.asahi.com/rss/asahi/science.rdf',
+        'ファッション':'https://www.asahi.com/rss/asahi/fashion.rdf',
+        '健康':'https://www.asahi.com/rss/asahi/health.rdf',
+        '愛車':'https://www.asahi.com/rss/asahi/car.rdf',
+        '教育': 'https://www.asahi.com/rss/asahi/edu.rdf',
+        'デジタル':'https://www.asahi.com/rss/asahi/digital.rdf',
+        'トラベル':'https://www.asahi.com/rss/asahi/travel.rdf',
+        '環境':'https://www.asahi.com/rss/asahi/eco.rdf',
+        'ショッピング':'https://www.asahi.com/rss/asahi/shopping.rdf'
     }
 }
 
