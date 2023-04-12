@@ -116,31 +116,40 @@ rss_urls = {
         'スポーツ': 'https://www3.nhk.or.jp/rss/news/cat6.xml',
         '文化・エンタメ': 'https://www3.nhk.or.jp/rss/news/cat7.xml',
     },
-    '毎日新聞': {
-        'ニュース速報（総合）': 'https://mainichi.jp/rss/etc/mainichi-flash.rss',
-        'スポーツ': 'https://mainichi.jp/rss/etc/mainichi-sports.rss',
-        'エンタメ':'https://mainichi.jp/rss/etc/mainichi-enta.rss',
-        '社説・解説・コラム':'https://mainichi.jp/rss/etc/opinion.rss'
+    'ITmedia':{
+    '総合記事一覧':'https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml',
+    'TOPSTORIES':'https://rss.itmedia.co.jp/rss/2.0/topstory.xml',
+    '新着記事':'https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml',
+    '国内記事':'https://rss.itmedia.co.jp/rss/2.0/news_domestic.xml',
+    '海外記事': 'https://rss.itmedia.co.jp/rss/2.0/news_foreign.xml',
+    '製品動向': 'https://rss.itmedia.co.jp/rss/2.0/news_products.xml',
+    'ビジネスオンライン':'https://rss.itmedia.co.jp/rss/2.0/business.xml',
+    'エンタープライズ':'https://rss.itmedia.co.jp/rss/2.0/enterprise.xml',
+    'エグゼクティブ': 'https://rss.itmedia.co.jp/rss/2.0/executive.xml',
+    'マーケティング':'https://rss.itmedia.co.jp/rss/2.0/marketing.xml',
     },
-    '朝日新聞': {
-        '国内': 'https://www.asahi.com/rss/asahi/newsheadlines.rdf',
-        '社会': 'https://www.asahi.com/rss/asahi/national.rdf',
-        '政治': 'https://www.asahi.com/rss/asahi/politics.rdf',
-        'スポーツ': 'https://www.asahi.com/rss/asahi/sports.rdf',
-        'エンタメ': 'https://www.asahi.com/rss/asahi/entertainment.rdf',   
-        '経済':'https://www.asahi.com/rss/asahi/business.rdf',
-        '国際':'https://www.asahi.com/rss/asahi/international.rdf',
-        'カルチャー':'https://www.asahi.com/rss/asahi/culture.rdf',
-        'テック＆サイエンス':'https://www.asahi.com/rss/asahi/science.rdf',
-        'ファッション':'https://www.asahi.com/rss/asahi/fashion.rdf',
-        '健康':'https://www.asahi.com/rss/asahi/health.rdf',
-        '愛車':'https://www.asahi.com/rss/asahi/car.rdf',
-        '教育': 'https://www.asahi.com/rss/asahi/edu.rdf',
-        'デジタル':'https://www.asahi.com/rss/asahi/digital.rdf',
-        'トラベル':'https://www.asahi.com/rss/asahi/travel.rdf',
-        '環境':'https://www.asahi.com/rss/asahi/eco.rdf',
-        'ショッピング':'https://www.asahi.com/rss/asahi/shopping.rdf'
-    }
+    'ニッカンスポーツ':{
+    'スポーツ':'https://www.nikkansports.com/sports/atom.xml',
+    '野球': 'https://www.nikkansports.com/baseball/atom.xml',
+    'サッカー':'https://www.nikkansports.com/soccer/atom.xml',
+    'ゴルフ': 'https://www.nikkansports.com/sports/golf/atom.xml',
+    '格闘技':'https://www.nikkansports.com/battle/atom.xml',
+    '競馬':'http://p.nikkansports.com/goku-uma/rss/atom.xml',
+    '芸能':'https://www.nikkansports.com/entertainment/atom.xml',
+    'AKB48':'https://www.nikkansports.com/entertainment/akb48/atom.xml',
+    '社会':'https://www.nikkansports.com/general/atom.xml'
+    },
+    'Google':{
+        'WORLD':'https://news.google.com/news/rss/headlines/section/topic/WORLD?hl=ja&gl=JP&ceid=JP:ja',
+        'NATION':'https://news.google.com/rss/topics/NATION?hl=ja&gl=JP&ceid=JP:ja',
+        'BUSINESS' : 'https://news.google.com/rss/topics/BUSINESS?hl=ja&gl=JP&ceid=JP:ja',
+        'TECHNOLOGY' : 'https://news.google.com/rss/topics/TECHNOLOGY?hl=ja&gl=JP&ceid=JP:ja',
+        'ENTERTAINMENT' : 'https://news.google.com/rss/topics/ENTERTAINMENT?hl=ja&gl=JP&ceid=JP:ja',
+        'SPORTS' : 'https://news.google.com/rss/topics/SPORTS?hl=ja&gl=JP&ceid=JP:ja',
+        'SCIENCE' : 'https://news.google.com/rss/topics/SCIENCE?hl=ja&gl=JP&ceid=JP:ja',
+        'HEALTH' : 'https://news.google.com/rss/topics/HEALTH?hl=ja&gl=JP&ceid=JP:ja',
+    },
+
 }
 
 while True:
