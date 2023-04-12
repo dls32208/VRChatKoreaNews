@@ -178,18 +178,18 @@ while True:
             for entry in feed.entries:
                 temp = f"_{entry.title}\n"
                 try:
-                    if len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.description)) and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.summary)):
-                        if len(remove_p_and_img_tags(entry.content[0])) <2:
+                    if hasattr(entry, 'content') and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.description)) and len(remove_p_and_img_tags(entry.content[0])) > len(remove_p_and_img_tags(entry.summary)):
+                        if len(remove_p_and_img_tags(entry.content[0])) < 2:
                             continue
-                        temp += f"{remove_p_and_img_tags(entry.content[0])}\n\n"
-                    else:
-                        if len(remove_p_and_img_tags(entry.summary)) < 2:
-                            continue
+                            temp += f"{remove_p_and_img_tags(entry.content[0])}\n\n"
+                    elif hasattr(entry, 'summary') and len(remove_p_and_img_tags(entry.summary)) >= 2:
                         temp += f"{remove_p_and_img_tags(entry.summary)}\n\n"
+                    elif len(remove_p_and_img_tags(entry.description)) >= 2:
+                        temp += f"{remove_p_and_img_tags(entry.description)}\n\n"
                 except AttributeError:
-                    if len(remove_p_and_img_tags(entry.summary)) < 2:
+                    if len(remove_p_and_img_tags(entry.description)) < 2:
                         continue
-                    temp +=f"{remove_p_and_img_tags(entry.summary)}\n\n"
+                    temp += f"{remove_p_and_img_tags(entry.description)}\n\n"
                 press_html = press_html+temp
             press_html +="^"; 
 

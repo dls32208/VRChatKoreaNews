@@ -5,7 +5,7 @@ import ssl
 if hasattr(ssl, '_create_unverified_context'):
     ssl._create_default_https_context = ssl._create_unverified_context
 
-rss_url = 'https://web.gekisaka.jp/feed'
+rss_url = 'https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml'
 feed = feedparser.parse(rss_url)
 
 
