@@ -187,9 +187,9 @@ while True:
                     elif len(remove_p_and_img_tags(entry.description)) >= 2:
                         temp += f"{remove_p_and_img_tags(entry.description)}\n\n"
                 except AttributeError:
-                    if len(remove_p_and_img_tags(entry.description)) < 2:
+                    if len(remove_p_and_img_tags(entry.summary)) < 2:
                         continue
-                    temp += f"{remove_p_and_img_tags(entry.description)}\n\n"
+                    temp += f"{remove_p_and_img_tags(entry.summary)}\n\n"
                 press_html = press_html+temp
             press_html +="^"; 
 
