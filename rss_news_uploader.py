@@ -4,6 +4,7 @@ import os
 import time
 from bs4 import BeautifulSoup
 import time
+import ssl
 
 def remove_parenthesis(string):
     # 주어진 문자열에서 괄호로 시작하는 부분을 찾아 삭제
@@ -144,6 +145,8 @@ rss_urls = {
 
 while True:
     for press in rss_urls:
+        if hasattr(ssl, '_create_unverified_context'):
+            ssl._create_default_https_context = ssl._create_unverified_context
         file_name = f"{press}.html"
         file_path = os.path.join(base_path, file_name)
         press_html = ""
