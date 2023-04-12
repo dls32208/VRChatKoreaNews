@@ -116,16 +116,6 @@ rss_urls = {
         'スポーツ': 'https://www3.nhk.or.jp/rss/news/cat6.xml',
         '文化・エンタメ': 'https://www3.nhk.or.jp/rss/news/cat7.xml',
     },
-    'ITmedia':{
-        '総合記事一覧':'https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml',
-        '国内記事':'https://rss.itmedia.co.jp/rss/2.0/news_domestic.xml',
-        '海外記事': 'https://rss.itmedia.co.jp/rss/2.0/news_foreign.xml',
-        '製品動向': 'https://rss.itmedia.co.jp/rss/2.0/news_products.xml',
-        'ビジネスオンライン':'https://rss.itmedia.co.jp/rss/2.0/business.xml',
-        'エンタープライズ':'https://rss.itmedia.co.jp/rss/2.0/enterprise.xml',
-        'エグゼクティブ': 'https://rss.itmedia.co.jp/rss/2.0/executive.xml',
-        'マーケティング':'https://rss.itmedia.co.jp/rss/2.0/marketing.xml',
-    },
     'ニッカンスポーツ':{
         'スポーツ':'https://www.nikkansports.com/sports/atom.xml',
         '野球': 'https://www.nikkansports.com/baseball/atom.xml',
