@@ -157,6 +157,15 @@ while True:
             feed = feedparser.parse(rss_url)
             # 기사 정보를 HTML 코드로 변환하여 press_html에 추가
             titleList=titleList+category+"_"
+
+            if not feed.bozo:
+                first_entry = feed.entries[0]
+                print("제목:", first_entry.title)
+                print("링크:", first_entry.link)
+            else:
+                print("잘못된 RSS 피드입니다.")
+
+
             for entry in feed.entries:
                 temp = f"_{entry.title}\n"
                 try:
