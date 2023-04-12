@@ -5,7 +5,7 @@ import ssl
 if hasattr(ssl, '_create_unverified_context'):
     ssl._create_default_https_context = ssl._create_unverified_context
 
-rss_url = 'https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml'
+rss_url = 'http://weather.goo.ne.jp/area/1710.rdfa'
 feed = feedparser.parse(rss_url)
 
 
